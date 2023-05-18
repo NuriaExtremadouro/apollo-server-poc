@@ -1,13 +1,17 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import CheckGroupsData from './db/check-group-table.json';
-import ChecksData from './db/check-table.json';
-import PairsData from './db/pair-table.json';
-import ProjectsData from './db/project-table.json';
-import SkillsData from './db/skill-table.json';
-import SkillGroupsData from './db/skill-group-table.json';
-import UsersData from './db/user-table.json';
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const server_1 = require("@apollo/server");
+const standalone_1 = require("@apollo/server/standalone");
+const check_group_table_json_1 = __importDefault(require("./db/check-group-table.json"));
+const check_table_json_1 = __importDefault(require("./db/check-table.json"));
+const pair_table_json_1 = __importDefault(require("./db/pair-table.json"));
+const project_table_json_1 = __importDefault(require("./db/project-table.json"));
+const skill_table_json_1 = __importDefault(require("./db/skill-table.json"));
+const skill_group_table_json_1 = __importDefault(require("./db/skill-group-table.json"));
+const user_table_json_1 = __importDefault(require("./db/user-table.json"));
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
@@ -88,34 +92,34 @@ const typeDefs = `#graphql
     SPANISH
   }
 `;
-
 // Resolvers define how to fetch the types defined in your schema.
 // This resolver retrieves books from the "books" array above.
 const resolvers = {
-  Query: {
-    checkGroups: () => CheckGroupsData,
-    checks: () => ChecksData,
-    pairs: () => PairsData,
-    projects: () => ProjectsData,
-    skillGroups: () => SkillGroupsData,
-    skills: () => SkillsData,
-    users: () => UsersData,
-  },
+    Query: {
+        checkGroups: () => {
+            console.log(check_group_table_json_1.default);
+            return [];
+        },
+        checks: () => check_table_json_1.default,
+        pairs: () => pair_table_json_1.default,
+        projects: () => project_table_json_1.default,
+        skillGroups: () => skill_group_table_json_1.default,
+        skills: () => skill_table_json_1.default,
+        users: () => user_table_json_1.default,
+    },
 };
-
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+const server = new server_1.ApolloServer({
+    typeDefs,
+    resolvers,
 });
-
-console.log(`🚀  Server ready at: http://localhost:4000/`);
-
 // Passing an ApolloServer instance to the `startStandaloneServer` function:
 //  1. creates an Express app
 //  2. installs your ApolloServer instance as middleware
 //  3. prepares your app to handle incoming requests
-startStandaloneServer(server, {
-  listen: { port: 4000 },
+(0, standalone_1.startStandaloneServer)(server, {
+    listen: { port: 4000 },
 });
+console.log(`🚀  Server ready at: http://localhost:4000/`);
+//# sourceMappingURL=index.js.map

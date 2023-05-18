@@ -1,0 +1,35 @@
+[
+  {
+    "id": "2f9e729f-cd23-4dcc-b3f6-0b0e2b6e43c9",
+    "name": "Build tools (Webpack not included)",
+    "levelDescriptions": [
+      "I have a very basic idea of the most common topics (Bundle, streams, core APIs, etc...)",
+      "I understand the basics and can read and modify existing code.",
+      "I can develop new solutions that use it.",
+      "I am able to handle special scenarios and complex solutions"
+    ],
+    "skillGroup": "203cd5c5-7db9-44a8-b6d9-7582b118ffd5"
+  },
+  {
+    "id": "3b984829-f070-4d5a-b0f6-efb1c666d2f3",
+    "name": "CLI",
+    "levelDescriptions": [
+      "I have a very basic idea of the most common topics (crossplatform, SIGINT..)",
+      "I understand the basics and can read and modify existing code.",
+      "I can develop new solutions that use it.",
+      "I can handle complex solutions an create advance apps with or without external libraries"
+    ],
+    "skillGroup": "203cd5c5-7db9-44a8-b6d9-7582b118ffd5"
+  },
+  {
+    "id": "a220110d-186e-4a22-9f3f-c89859f79192",
+    "name": "i18Next",
+    "levelDescriptions": [
+      "I can add new literals and I know how to use it at code",
+      "I can use variables at phrases",
+      "I can use plurals and I can make it working with all defined languages",
+      "I can use advance features at multilingual project"
+    ],
+    "skillGroup": "e9770a03-ea13-414a-98e1-2c2c8c9dd1ad"
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "2d565cdb-8273-4792-b813-7c03f632a472",
+    "name": "Greenroom - CSM Team",
+    "members": [
+      "36833fb3-75ea-4fd0-90d7-7a8a25aa7f12"
+    ],
+    "review": {
+      "f3ccff92-40e3-4cbc-9ca5-bd0394c970fd": 3,
+      "c8871561-4bc8-4a55-b5d0-c8484d9e4e00": 1,
+      "ecd187e5-9392-4b32-be0e-ab3e15873f43": 4
+    }
+  },
+  {
+    "id": "885d87db-cb69-4cfb-aff3-4ef957757f01",
+    "name": "Oral Surgery Tube",
+    "members": [
+      "cff89433-37b5-4200-a391-deeedff353d6",
+      "7218aeda-ce86-4e33-9bf0-72e9af32896f"
+    ],
+    "review": {
+      "f3ccff92-40e3-4cbc-9ca5-bd0394c970fd": 4,
+      "c8871561-4bc8-4a55-b5d0-c8484d9e4e00": 2,
+      "ecd187e5-9392-4b32-be0e-ab3e15873f43": 2
+    }
+  },
+  {
+    "id": "a4bf5f7f-d0ba-4c14-a17e-27363f57fe16",
+    "name": "RBI Burger King - 2023",
+    "members": [],
+    "review": null
+  }
+]

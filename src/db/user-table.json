@@ -1,0 +1,46 @@
+[
+  {
+    "id": "25332d1f-f41f-4993-9c1e-268f12e9df4c",
+    "name": "Nuria",
+    "address": "Nuria's Address",
+    "phone": "111111111",
+    "email": "nuria@domain.com",
+    "project": null,
+    "skills": {
+      "2f9e729f-cd23-4dcc-b3f6-0b0e2b6e43c9": 1,
+      "3b984829-f070-4d5a-b0f6-efb1c666d2f3": 1,
+      "a220110d-186e-4a22-9f3f-c89859f79192": 4
+    }
+  },
+  {
+    "id": "36833fb3-75ea-4fd0-90d7-7a8a25aa7f12",
+    "name": "John",
+    "address": "John's Address",
+    "phone": "22222222222",
+    "email": "john@domain.com",
+    "project": "2d565cdb-8273-4792-b813-7c03f632a472",
+    "skills": {
+      "2f9e729f-cd23-4dcc-b3f6-0b0e2b6e43c9": 2,
+      "3b984829-f070-4d5a-b0f6-efb1c666d2f3": 3,
+      "a220110d-186e-4a22-9f3f-c89859f79192": 1
+    }
+  },
+  {
+    "id": "cff89433-37b5-4200-a391-deeedff353d6",
+    "name": "Matt",
+    "address": "Matt's Address",
+    "phone": "333333333",
+    "email": "matt@domain.com",
+    "project": "885d87db-cb69-4cfb-aff3-4ef957757f01",
+    "skills": null
+  },
+  {
+    "id": "7218aeda-ce86-4e33-9bf0-72e9af32896f",
+    "name": "Michael",
+    "address": "Michael's Address",
+    "phone": "444444444",
+    "email": "michael@domain.com",
+    "project": "885d87db-cb69-4cfb-aff3-4ef957757f01",
+    "skills": null
+  }
+]
