@@ -19,15 +19,4 @@ export const UserTypes = `#graphql
   extend type Query {
     users(id: String): [User!]
   }
-
-  # Mutations
-  extend type Mutation {
-    createUser(
-      name: String!
-      address: String
-      phone: String
-      email: String
-      projectName: String
-    ): User
-  }
 `;

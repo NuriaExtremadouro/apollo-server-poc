@@ -20,7 +20,7 @@ export const SkillTypes = `#graphql
 
     editSkill(
       id: ID!
-      name: String
+      name: String!
       levelDescriptions: [String!]!
     ): Skill
 
