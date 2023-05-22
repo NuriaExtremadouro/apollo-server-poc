@@ -1,8 +1,8 @@
-export const types = `#graphql
+export const ProjectTypes = `#graphql
+  # Types
   type Project {
     id: ID!
     name: String!
-    "Only the member names"
     members: [String!]!
     reviews: [Review!]
   }
@@ -10,5 +10,10 @@ export const types = `#graphql
   type Review {
     check: Check!
     level: Int
+  }
+
+  # Queries
+  extend type Query {
+    projects(id: String): [Project!]
   }
 `;

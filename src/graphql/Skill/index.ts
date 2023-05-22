@@ -1,5 +1,3 @@
-import { queries } from './queries';
-import { resolvers } from './resolvers';
-import { types } from './types';
-
-export const Skill = { queries, resolvers, types };
+export { SkillMutation } from './mutations.js';
+export { SkillQuery } from './queries.js';
+export { SkillTypes } from './types.js';

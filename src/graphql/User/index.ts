@@ -1,6 +1,3 @@
-import { queries } from './queries';
-import { mutations } from './mutations';
-import { resolvers } from './resolvers';
-import { types } from './types';
-
-export const User = { queries, mutations, resolvers, types };
+export { UserQuery } from './queries.js';
+export { UserResolvers } from './resolvers.js';
+export { UserTypes } from './types.js';

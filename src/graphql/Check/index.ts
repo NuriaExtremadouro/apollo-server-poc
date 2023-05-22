@@ -1,5 +1,2 @@
-import { queries } from './queries';
-import { resolvers } from './resolvers';
-import { types } from './types';
-
-export const Check = { queries, resolvers, types };
+export { CheckQuery } from './queries.js';
+export { CheckTypes } from './types.js';

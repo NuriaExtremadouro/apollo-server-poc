@@ -1,5 +1,3 @@
-import { queries } from './queries';
-import { resolvers } from './resolvers';
-import { types } from './types';
-
-export const Project = { queries, resolvers, types };
+export { ProjectQuery } from './queries.js';
+export { ProjectResolvers } from './resolvers.js';
+export { ProjectTypes } from './types.js';
