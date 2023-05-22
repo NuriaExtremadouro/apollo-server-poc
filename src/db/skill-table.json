@@ -7,8 +7,7 @@
       "I understand the basics and can read and modify existing code.",
       "I can develop new solutions that use it.",
       "I am able to handle special scenarios and complex solutions"
-    ],
-    "skillGroup": "203cd5c5-7db9-44a8-b6d9-7582b118ffd5"
+    ]
   },
   {
     "id": "3b984829-f070-4d5a-b0f6-efb1c666d2f3",
@@ -18,8 +17,7 @@
       "I understand the basics and can read and modify existing code.",
       "I can develop new solutions that use it.",
       "I can handle complex solutions an create advance apps with or without external libraries"
-    ],
-    "skillGroup": "203cd5c5-7db9-44a8-b6d9-7582b118ffd5"
+    ]
   },
   {
     "id": "a220110d-186e-4a22-9f3f-c89859f79192",
@@ -29,7 +27,6 @@
       "I can use variables at phrases",
       "I can use plurals and I can make it working with all defined languages",
       "I can use advance features at multilingual project"
-    ],
-    "skillGroup": "e9770a03-ea13-414a-98e1-2c2c8c9dd1ad"
+    ]
   }
 ]

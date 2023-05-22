@@ -7,8 +7,7 @@
       "Below 50% coverage.",
       "Between 50-80% coverage.",
       "Above 80% coverage."
-    ],
-    "checkGroup": "75a5b1ca-6fac-4f3d-b003-5a4548e7e4e9"
+    ]
   },
   {
     "id": "c8871561-4bc8-4a55-b5d0-c8484d9e4e00",
@@ -18,8 +17,7 @@
       "Below 50% coverage.",
       "Between 50-80% coverage.",
       "Above 80% coverage."
-    ],
-    "checkGroup": "75a5b1ca-6fac-4f3d-b003-5a4548e7e4e9"
+    ]
   },
   {
     "id": "ecd187e5-9392-4b32-be0e-ab3e15873f43",
@@ -29,7 +27,6 @@
       "Basic pipeline to build & run tests.",
       "Pipeline including build, test and deploy.",
       "Pipeline with extra quality checks (Sonarcloud, etc.) before deploying."
-    ],
-    "checkGroup": "671b2f40-96de-4fe2-8ee5-a614f5424d99"
+    ]
   }
 ]
