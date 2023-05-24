@@ -1,32 +1,33 @@
+import { GraphQLError } from "graphql";
+
 /**
  * Resolvers for the fields of the types.ts -> Mutations definitions
  */
 export const SkillMutation = {
   createSkill: (_root, args, contextValue) => {
-    const { name, levelDescriptions } = args.newSkill;
+    const { levelDescriptions } = args.newSkill;
 
-    if (!name || !levelDescriptions) {
-      throw Error('Missing parameters to create a new skill');
+    if (levelDescriptions.length !== 4) {
+      // Using GraphQLError we can be more detailed about why specific errors happen
+      throw new GraphQLError('Field levelDescriptions should be exactly 4 strings', {
+        extensions: { code: 'BAD_ARGS', argumentsReceived: args.newSkill },
+      });
     }
 
     return contextValue.skillsDataSource.create(args.newSkill);
   },
   editSkill: (_root, args, contextValue) => {
-    const { id, name, levelDescriptions } = args.editedSkill;
+    const { levelDescriptions } = args.editedSkill;
 
-    if (!id || !name || !levelDescriptions) {
-      throw Error('Missing parameters to edit a skill');
+    if (levelDescriptions.length !== 4) {
+      throw new GraphQLError('Field levelDescriptions should be exactly 4 strings', {
+        extensions: { code: 'BAD_ARGS', argumentsReceived: args.newSkill },
+      });
     }
 
     return contextValue.skillsDataSource.update(args.editedSkill);
   },
   deleteSkill: (_root, args, contextValue) => {
-    const { id } = args;
-
-    if (!id) {
-      throw Error('Missing parameters to delete a skill');
-    }
-
-    return contextValue.skillsDataSource.delete(id);
+    return contextValue.skillsDataSource.delete(args.id);
   },
 };
