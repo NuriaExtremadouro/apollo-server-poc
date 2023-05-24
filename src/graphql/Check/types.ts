@@ -8,6 +8,6 @@ export const CheckTypes = `#graphql
 
   # Queries
   extend type Query {
-    checks(id: String): [Check!]
+    checks(name: String): [Check!]
   }
 `;

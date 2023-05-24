@@ -15,8 +15,16 @@ export const UserTypes = `#graphql
     level: Int
   }
 
+  # Input
+  input UsersFilters {
+    name: String
+    address: String
+    phone: String
+    email: String
+  }
+
   # Queries
   extend type Query {
-    users(id: String): [User!]
+    users(filters: UsersFilters): [User!]
   }
 `;

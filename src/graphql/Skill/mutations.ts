@@ -5,7 +5,7 @@ import SkillsData from '../../db/skill-table.json';
 
 export const SkillMutation = {
   createSkill: (root, args) => {
-    const { name, levelDescriptions } = args;
+    const { name, levelDescriptions } = args.newSkill;
 
     if (!name || !levelDescriptions) {
       throw Error('Missing parameters to create a new skill');
@@ -27,7 +27,7 @@ export const SkillMutation = {
     return newSkill;
   },
   editSkill: (root, args) => {
-    const { id, name, levelDescriptions } = args;
+    const { id, name, levelDescriptions } = args.editedSkill;
 
     if (!id || !name || !levelDescriptions) {
       throw Error('Missing parameters to edit a skill');

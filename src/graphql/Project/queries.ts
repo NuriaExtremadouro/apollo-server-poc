@@ -2,8 +2,8 @@ import ProjectsData from '../../db/project-table.json';
 
 export const ProjectQuery = {
   projects: (root, args) => {
-    if (args.id) {
-      return ProjectsData.filter(project => project.id === args.id);
+    if (args.name) {
+      return ProjectsData.filter(project => project.name === args.name);
     } else {
       return ProjectsData;
     }

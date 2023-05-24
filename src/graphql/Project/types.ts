@@ -14,6 +14,6 @@ export const ProjectTypes = `#graphql
 
   # Queries
   extend type Query {
-    projects(id: String): [Project!]
+    projects(name: String): [Project!]
   }
 `;
