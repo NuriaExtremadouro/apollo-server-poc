@@ -42,6 +42,6 @@ export const SkillTypes = `#graphql
     "Mutation to edit an existing skill"
     editSkill(editedSkill: EditSkill!): Skill
     "Mutation to delete an existing skill"
-    deleteSkill(id: ID!): Skill
+    deleteSkill(id: String!): Skill
   }
 `;

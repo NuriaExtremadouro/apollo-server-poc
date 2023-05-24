@@ -35,6 +35,6 @@ export const SkillMutation = {
     return contextValue.skillsDataSource.update(args.editedSkill);
   },
   deleteSkill: (_root: any, args: MutationDeleteSkillArgs, contextValue: Context) => {
-    return contextValue.skillsDataSource.delete(args.id.toString());
+    return contextValue.skillsDataSource.delete(args.id);
   },
 };

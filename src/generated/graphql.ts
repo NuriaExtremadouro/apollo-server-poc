@@ -60,17 +60,17 @@ export type Mutation = {
 
 
 export type MutationCreateSkillArgs = {
-  newSkill?: InputMaybe<CreateSkill>;
+  newSkill: CreateSkill;
 };
 
 
 export type MutationDeleteSkillArgs = {
-  id: Scalars['ID']['input'];
+  id: Scalars['String']['input'];
 };
 
 
 export type MutationEditSkillArgs = {
-  editedSkill?: InputMaybe<EditSkill>;
+  editedSkill: EditSkill;
 };
 
 /** Type to describe a project */
@@ -293,9 +293,9 @@ export type CheckResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  createSkill?: Resolver<Maybe<ResolversTypes['Skill']>, ParentType, ContextType, Partial<MutationCreateSkillArgs>>;
+  createSkill?: Resolver<Maybe<ResolversTypes['Skill']>, ParentType, ContextType, RequireFields<MutationCreateSkillArgs, 'newSkill'>>;
   deleteSkill?: Resolver<Maybe<ResolversTypes['Skill']>, ParentType, ContextType, RequireFields<MutationDeleteSkillArgs, 'id'>>;
-  editSkill?: Resolver<Maybe<ResolversTypes['Skill']>, ParentType, ContextType, Partial<MutationEditSkillArgs>>;
+  editSkill?: Resolver<Maybe<ResolversTypes['Skill']>, ParentType, ContextType, RequireFields<MutationEditSkillArgs, 'editedSkill'>>;
 };
 
 export type ProjectResolvers<ContextType = any, ParentType extends ResolversParentTypes['Project'] = ResolversParentTypes['Project']> = {
