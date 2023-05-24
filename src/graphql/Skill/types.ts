@@ -38,12 +38,10 @@ export const SkillTypes = `#graphql
   # Mutations
   extend type Mutation {
     "Mutation to create a new skill"
-    createSkill(newSkill: CreateSkill): Skill
+    createSkill(newSkill: CreateSkill!): Skill
     "Mutation to edit an existing skill"
-    editSkill(editedSkill: EditSkill): Skill
+    editSkill(editedSkill: EditSkill!): Skill
     "Mutation to delete an existing skill"
-    deleteSkill(
-      id: ID!
-    ): Skill
+    deleteSkill(id: ID!): Skill
   }
 `;

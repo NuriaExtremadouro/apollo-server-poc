@@ -2,10 +2,10 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 
 import { typeDefs, resolvers } from './graphql'
-import { JsonDataSource } from './jsonDataSource';
+import { JsonDataSource } from './providers/jsonDataSource';
 
 // Interface of the context configured when creating the Express app
-interface Context {
+export interface Context {
   checksDataSource: JsonDataSource;
   projectsDataSource: JsonDataSource;
   skillsDataSource: JsonDataSource;

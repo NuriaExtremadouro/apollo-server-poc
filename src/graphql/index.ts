@@ -1,3 +1,5 @@
+import { makeExecutableSchema } from '@graphql-tools/schema';
+
 import { CheckQuery, CheckTypes } from './Check';
 import { ProjectQuery, ProjectResolvers, ProjectTypes } from './Project';
 import { SkillMutation, SkillQuery, SkillTypes } from './Skill';
@@ -27,3 +29,8 @@ export const resolvers = {
   Project: ProjectResolvers,
   User: UserResolvers
 };
+
+export const schema = makeExecutableSchema({
+  resolvers,
+  typeDefs,
+});

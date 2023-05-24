@@ -1,10 +1,10 @@
 import fs from 'fs';
 import { v4 as uuid } from 'uuid';
 
-import ChecksData from './db/check-table.json';
-import ProjectsData from './db/project-table.json';
-import SkillsData from './db/skill-table.json';
-import UsersData from './db/user-table.json';
+import ChecksData from '../db/check-table.json';
+import ProjectsData from '../db/project-table.json';
+import SkillsData from '../db/skill-table.json';
+import UsersData from '../db/user-table.json';
 
 /**
  * This class serves as an example of a data source that will be passed to the context.

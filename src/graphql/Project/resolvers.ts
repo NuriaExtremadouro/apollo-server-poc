@@ -1,3 +1,6 @@
+import { Context } from "../..";
+import { Project } from "../../generated/graphql";
+
 /**
  * Resolvers for the fields of the types.ts -> Project type. Any fields that have no resolver will
  * be using the default resolver (the field that matches in the data).
@@ -11,13 +14,13 @@
  * - https://www.apollographql.com/docs/apollo-server/data/fetching-rest/#using-with-dataloader
  */
 export const ProjectResolvers = {
-  members: (parent, _args, contextValue) => {
+  members: (parent: Project, _args: any, contextValue: Context) => {
     const { projectsDataSource, usersDataSource } = contextValue;
     const rawMembers = projectsDataSource.read({ id: parent.id })[0].members;
 
     return rawMembers.map(memberId => usersDataSource.read({ id: memberId })[0].name);
   },
-  reviews: (parent, _args, contextValue) => {
+  reviews: (parent: Project, _args: any, contextValue: Context) => {
     const { checksDataSource, projectsDataSource } = contextValue;
     const rawReviews = projectsDataSource.read({ id: parent.id })[0].review;
 
