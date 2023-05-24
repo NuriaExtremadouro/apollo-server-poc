@@ -3,7 +3,7 @@ import { ProjectQuery, ProjectResolvers, ProjectTypes } from './Project';
 import { SkillMutation, SkillQuery, SkillTypes } from './Skill';
 import { UserQuery, UserResolvers, UserTypes } from './User';
 
-// remember we only use gql in this file. types in other files are just simple strings
+// Export our schema. Note that the Query and Mutation types are extended in types.ts files
 export const typeDefs = `#graphql
   type Query
   type Mutation
@@ -13,6 +13,7 @@ export const typeDefs = `#graphql
   ${UserTypes}
 `;
 
+// Export the resolvers for our schema
 export const resolvers = {
   Query: {
     ...CheckQuery,

@@ -4,6 +4,7 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { typeDefs, resolvers } from './graphql'
 import { JsonDataSource } from './jsonDataSource';
 
+// Interface of the context configured when creating the Express app
 interface Context {
   checksDataSource: JsonDataSource;
   projectsDataSource: JsonDataSource;
@@ -11,8 +12,7 @@ interface Context {
   usersDataSource: JsonDataSource;
 }
 
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
+// ApolloServer instance with our schema and its resolvers
 const server = new ApolloServer<Context>({
   typeDefs,
   resolvers,
@@ -20,10 +20,9 @@ const server = new ApolloServer<Context>({
 
 console.log(`🚀  Server ready at: http://localhost:4000/`);
 
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
+// Create Express app and use the ApolloServer as middleware
+// The context allows us to have instances to connect to our datasources easily from all resolvers
+// We could also use the req/res to check headers, tokens, etc. to authenticate users and more
 startStandaloneServer(server, {
   context: async ({ req, res }) => ({
     checksDataSource: new JsonDataSource('checks'),
