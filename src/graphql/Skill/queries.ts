@@ -1,11 +1,8 @@
-import SkillsData from '../../db/skill-table.json';
-
+/**
+ * Resolvers for the fields of the types.ts -> Queries definitions
+ */
 export const SkillQuery = {
-  skills: (root, args) => {
-    if (args.name) {
-      return SkillsData.filter(skill => skill.name === args.name);
-    } else {
-      return SkillsData;
-    }
+  skills: (_root, args, contextValue) => {
+    return contextValue.skillsDataSource.read({ name: args.name });
   },
 };

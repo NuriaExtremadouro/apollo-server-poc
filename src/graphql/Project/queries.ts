@@ -1,11 +1,8 @@
-import ProjectsData from '../../db/project-table.json';
-
+/**
+ * Resolvers for the fields of the types.ts -> Queries definitions
+ */
 export const ProjectQuery = {
-  projects: (root, args) => {
-    if (args.name) {
-      return ProjectsData.filter(project => project.name === args.name);
-    } else {
-      return ProjectsData;
-    }
+  projects: (_root, args, contextValue) => {
+    return contextValue.projectsDataSource.read({ name: args.name });
   },
 };

@@ -1,11 +1,8 @@
-import ChecksData from '../../db/check-table.json';
-
+/**
+ * Resolvers for the fields of the types.ts -> Queries definitions
+ */
 export const CheckQuery = {
-  checks: (root, args) => {
-    if (args.name) {
-      return ChecksData.filter(check => check.name === args.name);
-    } else {
-      return ChecksData;
-    }
+  checks: (_root, args, contextValue) => {
+    return contextValue.checksDataSource.read({ name: args.name });
   },
 };
