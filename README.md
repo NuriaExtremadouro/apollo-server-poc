@@ -4,13 +4,7 @@
 
 This is a Proof of Concept with a sample project setup to use GQL with Apollo Server for the backend. It is meant to be complemented by the Apollo Client POC.
 
-The main point of using GQL in our backend is to be able to return to clients only what they need. In this document, we'll present:
-- The POC's folder structure.
-- What's the raw data structure.
-- What does the client app need.
-- How the schema is structured for the client.
-- How the resolvers populate the schema fields.
-- A comparison between Apollo/GQL and API REST.
+The main point of using GQL in our backend is to be able to return to clients only what they need. This document explains how the POC does that as well as some GQL concepts.
 
 At the end of the document you can find the commands to run this project and how to use the Apollo Sandbox.
 
@@ -24,8 +18,8 @@ These are the main points of the POC structure inside the `src` folder:
     - `index.ts`: for exporting.
     - `mutations.ts`: for the resolvers of mutations.
     - `queries.ts`: for the resolvers of queries.
-    - `resolvers.ts`: for the resolvers of fields that need specific behavior instead of using the default resolver. For example, the `skills` field of the type `User`. This field isn't found directly in the JSON file; it needs to be calculated with specific logic.
-    - `types.ts`: to declare the GQL types (including queries and mutations). This is the part that specifically uses the GQL language. The rest is Apollo configuration and resolvers implemented with regular TS code.
+    - `resolvers.ts`: for the resolvers of fields that need specific behavior instead of using the default resolver. For example, the `skills` field of the type `User`.
+    - `types.ts`: to declare the GQL types (including queries and mutations). This is the part that specifically uses the GQL language.
   - `index.ts`: exports the `typeDefs` and `resolvers` after structuring them for instantiating our Apollo server.
   - `codegen.ts`: config for the `codegen` script in the `package.json`.
 
@@ -49,14 +43,14 @@ Keep in mind that, while this POC uses JSON files, in reality we could have all 
 
 While the client itself is implemented in a separate repo, it's relevant here to understand why this POC implements the schema the way it does. We have a single client app for simplicity, but its three tabs represent three separate client "apps":
 - For the Employees tab, we only need to see user data (name, address, etc.).
-- For the Skill Matrix tab, it represents an app that needs to get users with their skills, and the level they have for each.
+- For the Skill Matrix tab, it represents an app that needs to get users with their skills, and the level they have for each. It should also allow to create/edit/delete skills.
 - For the Project Review Tool tab, it represents an app that needs to get projects with their reviews (which checks they have implemented and with what level).
 
-We can notice our DB structure doesn't match that perfectly and our schema will compensate for it.
+We can notice our DB structure doesn't match perfectly and our schema will compensate for it.
 
 ## Schema structure
 
-The schema defines the types (which include queries/mutations) available to be requested by a client, not how those things are implemented (which is done by the resolvers). It doesn't need to match the shape of our data sources. The point is that it should match what the client(s) need.
+The schema defines the types (which include queries/mutations) available to be requested by a client, not how those things are implemented (which is done by the resolvers). It doesn't need to match the shape of our data sources. The point is that it should match what the clients need.
 
 ### Requirements
 
@@ -87,10 +81,10 @@ Based on the requirements, our object types are:
   - `UserSkill` type, with the fields `skill` and `level`. This type is meant to be a middleman to contain both Skill data and the level the user has achieved for it. It lives in the `User` folder because it's only relevant as a type for a user field. We won't be querying or mutating anything with it.
 - `Skill` type, with the fields `id`, `name`, `levelDescriptions`. This type has its own CRUD operations, but it's also used for the `UserSkill` type.
 - `Project` type, with the fields `id`, `name`, `members`, `reviews`.
-  - `Review` type, with the fields `check` and `level`. Same as with `UserSkill`, this type is only a middleman so it doesn't have its own folder.
+  - `Review` type, with the fields `check` and `level`. Same as with `UserSkill`, this type is only a middleman.
 - `Check` type, with the fields `id`, `name`, `levelDescriptions`. This type has its own query, but it's also used for the `Review` type.
 
-Some notes regarding types:
+Some GQL notes regarding types:
 - The types described above are known as [object types](https://www.apollographql.com/docs/apollo-server/schema/schema#object-types).
 - The fields of those object types can be other object types (e.g. `skills: [UserSkill!]`) or [scalar types](https://www.apollographql.com/docs/apollo-server/schema/schema#scalar-types) (e.g. `String`, `ID!`).
   - The `ID` type is meant to be a unique value, and comes in handy for refreshing the cache when working with clients that also use Apollo.
@@ -99,7 +93,7 @@ Some notes regarding types:
     - `skills: [UserSkill!]` means that the `skills` field is nullable but, if it contains an array, the content of said array has to be a `UserSkill`. It can contain an array with null values.
     - `skills: [UserSkill!]!` would mean that the `skills` field always needs to contain an array, even if it's an empty array.
 - There are more types such as `union`, `interface` and `enum`, but those aren't used in this POC. Check them [here](https://www.apollographql.com/docs/apollo-server/schema/schema#supported-types).
-- We can document our types (including queries/mutations) with `""` blocks. This is recommended so clients can know what our schema offers (similar to Swagger). We can also apply [directives](https://www.apollographql.com/docs/apollo-server/schema/directives) in our schema for things like marking fields as deprecated, as well as custom behaviors.
+- We can document our types (including queries/mutations) with `""` blocks. This is recommended so clients know what our schema offers (similar to Swagger). We can also apply [directives](https://www.apollographql.com/docs/apollo-server/schema/directives) in our schema for things like marking fields as deprecated, as well as custom behaviors.
 
 ### Queries
 
@@ -111,7 +105,7 @@ Based on the requirements, our queries are:
 
 Queries are meant to only read and return data, not modifying it. You don't have to create queries for all your object types, only for those that need to be fetched by a client. For example, our client won't be calling a raw set of `Review`s; those will only come as part of a `Project`, so we have the `projects` query but not a `reviews` query.
 
-Also, the [Query type](https://www.apollographql.com/docs/apollo-server/schema/schema#the-query-type) is a special object type, and the queries that we declare (`users`, `skills`, etc.) are its fields. It's basically this:
+From the point of view of GQL, the [Query type](https://www.apollographql.com/docs/apollo-server/schema/schema#the-query-type) is a special object type, and the queries that we declare (`users`, `skills`, etc.) are its fields. It's basically this:
 
 ```
 type Query {
@@ -133,7 +127,7 @@ Based on the requirements, our mutations are:
 
 Mutations are meant to modify data, and it is recommended to return the data that has been modified so clients can automatically updated without having to do a subsequent query to get the latest changes. You only need to have mutations based on the client needs, not for all object types.
 
-Same as with queries, the [Mutation type](https://www.apollographql.com/docs/apollo-server/schema/schema#the-mutation-type) is a special object type. We're declaring it in `graphql/index.ts` and then extending it for scalability.
+Same as with queries, for GQL the [Mutation type](https://www.apollographql.com/docs/apollo-server/schema/schema#the-mutation-type) is a special object type. We're declaring it in `graphql/index.ts` and then extending it for scalability.
 
 ### Inputs
 
@@ -144,7 +138,7 @@ Some of our queries and mutations need to have hierarchical data in their argume
 
 We only need input types when a scalar isn't enough. In this POC the examples are very simple so inputs seem a bit excessive but in more complex projects the can come in handy. For example, if we had a project where the user data has 20 required fields, we wouldn't want to have a `createUser` mutation with 20 separate arguments; instead, we'd have an input with those 20 fields and use it for the argument of the mutation.
 
-We can't use regular object types as arguments (details [here](https://spec.graphql.org/June2018/#sec-Input-Objects)), we have to use input. It is also recommended to avoid reusing input types for different arguments unless we're very sure that the implementation won't drift apart.
+In GQL we can't use regular object types as arguments (details [here](https://spec.graphql.org/June2018/#sec-Input-Objects)), we have to use input. It's recommended to avoid reusing input types for different arguments unless we're sure that the implementation won't drift apart.
 
 ## Resolvers
 
@@ -153,7 +147,7 @@ The resolvers define how our server will fetch (or modify) the data associated w
 - `queries.ts`, which has the resolvers to fetch data.
 - `resolvers.ts`, which has the resolvers of special fields that won't work with the default resolver.
 
-The default resolver is the how Apollo with populate our data because we don't have anything specific defined by ourselves. Also, the resolvers only execute if the client has requested the associated field. For example, if we query `projects` and only request the field `name` and `members`:
+The [default resolver](https://www.apollographql.com/docs/apollo-server/data/resolvers#default-resolvers) is how Apollo populates our data when we don't have anything specific defined by ourselves. Also, the resolvers only execute if the client has requested the associated field. For example, if we query `projects` and only request the field `name` and `members`:
 - The resolver for the query `projects` in `queries.ts` will execute.
 - The field `name` will be populated by the default resolver, which will pick the `name` field that is already present in our raw data from the JSON file.
 - The resolver for the field `members` in `resolvers.ts` will execute instead of going for the default.
@@ -214,5 +208,9 @@ Keep in mind you need to have the server running on http://localhost:4000/.
 ## Apollo Sandbox
 
 By default, Apollo includes a sandbox that can be used for calling our server. Here's a demo on how you can use it for executing a query and a mutation. The demo also includes how to pass parameters to them, how to request specific fields and how errors are returned. You can also write the queries manually in the UI.
+
+![Apollo Sandbox GIF](assets/ApolloSandboxDemo.gif?raw=true "Apollo Sandbox GIF")
+
+Or if you want to download the video:
 
 ![Apollo Sandbox Demo](assets/ApolloSandboxDemo.mov?raw=true "Apollo Sandbox Demo")
