@@ -5,13 +5,23 @@ export const UserTypes = `#graphql
     "UUID"
     id: ID!
     "Full name"
-    name: String!
+    fullName: String!
+    "First name"
+    firstName: String!
+    "Last name"
+    lastName: String!
     "Full address"
     address: String
     "Phone"
     phone: String
     "Email"
     email: String
+    "Birth date"
+    birthDate: String!
+    "Date when the user joined"
+    joinedDate: String!
+    "Role of the user within the company"
+    role: String!
     "Name of the project in which this user is working"
     projectName: String
     "Skills that this user has"
@@ -29,8 +39,10 @@ export const UserTypes = `#graphql
   # Input
   "Available filters to be used as the argument when querying users"
   input UsersFilters {
+    "User id"
+    id: String
     "Full user name"
-    name: String
+    fullName: String
     "Full user address"
     address: String
     "User phone"

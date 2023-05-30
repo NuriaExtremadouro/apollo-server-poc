@@ -96,7 +96,9 @@ export class JsonDataSource {
     if (filters) {
       Object.entries(filters).forEach(([filter, value]) => {
         if (value) {
-          result = this.dataSet.filter(element => element[filter] === value);
+          result = this.dataSet.filter(element =>
+            element[filter].toLowerCase().indexOf(value.toLowerCase()) !== -1
+          );
         }
       });
     }
