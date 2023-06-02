@@ -18,7 +18,7 @@ export const ProjectResolvers = {
     const { projectsDataSource, usersDataSource } = contextValue;
     const rawMembers = projectsDataSource.read({ id: parent.id })[0].members;
 
-    return rawMembers.map(memberId => usersDataSource.read({ id: memberId })[0].name);
+    return rawMembers.map(memberId => usersDataSource.read({ id: memberId })[0].fullName);
   },
   reviews: (parent: Project, _args: any, contextValue: Context) => {
     const { checksDataSource, projectsDataSource } = contextValue;

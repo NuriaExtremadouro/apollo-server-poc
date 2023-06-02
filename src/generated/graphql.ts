@@ -105,6 +105,7 @@ export type QueryChecksArgs = {
 
 
 export type QueryProjectsArgs = {
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -143,16 +144,26 @@ export type User = {
   __typename?: 'User';
   /** Full address */
   address?: Maybe<Scalars['String']['output']>;
+  /** Birth date */
+  birthDate: Scalars['String']['output'];
   /** Email */
   email?: Maybe<Scalars['String']['output']>;
+  /** First name */
+  firstName: Scalars['String']['output'];
+  /** Full name */
+  fullName: Scalars['String']['output'];
   /** UUID */
   id: Scalars['ID']['output'];
-  /** Full name */
-  name: Scalars['String']['output'];
+  /** Date when the user joined */
+  joinedDate: Scalars['String']['output'];
+  /** Last name */
+  lastName: Scalars['String']['output'];
   /** Phone */
   phone?: Maybe<Scalars['String']['output']>;
   /** Name of the project in which this user is working */
   projectName?: Maybe<Scalars['String']['output']>;
+  /** Role of the user within the company */
+  role: Scalars['String']['output'];
   /** Skills that this user has */
   skills?: Maybe<Array<UserSkill>>;
 };
@@ -173,7 +184,9 @@ export type UsersFilters = {
   /** User email */
   email?: InputMaybe<Scalars['String']['input']>;
   /** Full user name */
-  name?: InputMaybe<Scalars['String']['input']>;
+  fullName?: InputMaybe<Scalars['String']['input']>;
+  /** User id */
+  id?: InputMaybe<Scalars['String']['input']>;
   /** User phone */
   phone?: InputMaybe<Scalars['String']['input']>;
 };
@@ -328,11 +341,16 @@ export type SkillResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   address?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  birthDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  firstName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  fullName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  joinedDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   phone?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   projectName?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  role?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   skills?: Resolver<Maybe<Array<ResolversTypes['UserSkill']>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

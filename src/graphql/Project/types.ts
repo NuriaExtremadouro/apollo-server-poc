@@ -23,6 +23,6 @@ export const ProjectTypes = `#graphql
   # Queries
   extend type Query {
     "Query to get projects (filtered or not)"
-    projects(name: String): [Project!]
+    projects(id: String, name: String): [Project!]
   }
 `;

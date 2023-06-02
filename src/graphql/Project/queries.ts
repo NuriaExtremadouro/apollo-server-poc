@@ -6,6 +6,6 @@ import { QueryProjectsArgs } from "../../generated/graphql";
  */
 export const ProjectQuery = {
   projects: (_root: any, args: QueryProjectsArgs, contextValue: Context) => {
-    return contextValue.projectsDataSource.read({ name: args.name });
+    return contextValue.projectsDataSource.read({ id: args.id, name: args.name });
   },
 };
