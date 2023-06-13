@@ -111,6 +111,7 @@ export type QueryProjectsArgs = {
 
 
 export type QuerySkillsArgs = {
+  id?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
 };
 

@@ -6,6 +6,6 @@ import { QuerySkillsArgs } from "../../generated/graphql";
  */
 export const SkillQuery = {
   skills: (_root: any, args: QuerySkillsArgs, contextValue: Context) => {
-    return contextValue.skillsDataSource.read({ name: args.name });
+    return contextValue.skillsDataSource.read({ id: args.id, name: args.name });
   },
 };

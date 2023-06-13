@@ -32,7 +32,7 @@ export const SkillTypes = `#graphql
   # Queries
   extend type Query {
     "Query to get skills (filtered or not)"
-    skills(name: String): [Skill!]
+    skills(id: String, name: String): [Skill!]
   }
 
   # Mutations
